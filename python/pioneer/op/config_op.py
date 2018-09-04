@@ -31,7 +31,7 @@ class ConfigOp(netconf_op.NetconfOp):
 
         try:
             self.debug("Transition_to_state: #{0}\n".format(filename))
-            self.extend_timeout(120) # Max 120 seconds for executing the transaction and a compare-config
+            self.extend_timeout(1200) # Max 1200 seconds for executing the transaction and a compare-config
             thandle = maapi.start_trans2(self.msocket, _ncs.RUNNING, _ncs.READ_WRITE, self.uinfo.usid)
             maapi.delete(self.msocket, thandle, "/ncs:devices/device{" + self.dev_name + "}/config")
             maapi.load_config(self.msocket, thandle, maapi.CONFIG_J + maapi.CONFIG_MERGE, filename)
